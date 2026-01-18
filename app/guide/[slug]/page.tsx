@@ -1,9 +1,6 @@
-'use client';
-
-import { useParams } from 'next/navigation';
 import { getGuideSectionBySlug, getAllGuideSections } from '@/data/guide-content';
+import { tasks } from '@/data/checklist';
 import ChecklistItem from '@/components/ChecklistItem';
-import { useChecklist } from '@/contexts/ChecklistContext';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -15,11 +12,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function GuideSectionPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const section = getGuideSectionBySlug(slug);
-  const { getTaskById } = useChecklist();
+export default function GuideSectionPage({ params }: { params: { slug: string } }) {
+  const section = getGuideSectionBySlug(params.slug);
 
   if (!section) {
     return (
@@ -35,8 +29,9 @@ export default function GuideSectionPage() {
     );
   }
 
+  // Get related tasks directly from data
   const relatedTasks = section.relatedTasks
-    .map(taskId => getTaskById(taskId))
+    .map(taskId => tasks.find(t => t.id === taskId))
     .filter(Boolean);
 
   return (
