@@ -1,11 +1,19 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { getGuideSectionBySlug } from '@/data/guide-content';
+import { getGuideSectionBySlug, getAllGuideSections } from '@/data/guide-content';
 import ChecklistItem from '@/components/ChecklistItem';
 import { useChecklist } from '@/contexts/ChecklistContext';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+
+// Generate static paths for all guide sections
+export async function generateStaticParams() {
+  const sections = getAllGuideSections();
+  return sections.map((section) => ({
+    slug: section.slug,
+  }));
+}
 
 export default function GuideSectionPage() {
   const params = useParams();
