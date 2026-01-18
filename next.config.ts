@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  basePath: '/dublin-moving-guide',
+  images: {
+    unoptimized: true,
+  },
+  // Trailing slash for better static hosting
+  trailingSlash: true,
 };
 
 export default nextConfig;
