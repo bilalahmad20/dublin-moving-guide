@@ -46,17 +46,20 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
   // Show password gate if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50 p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#6765E8] to-[#1CBC97] p-4">
+        <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full">
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-              <Lock className="w-8 h-8 text-green-600" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#6765E8] to-[#1CBC97] rounded-full mb-4">
+              <Lock className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               🇮🇪 Dublin Moving Guide
             </h1>
-            <p className="text-gray-600">
-              Internal Use Only - Please enter password to continue
+            <p className="text-gray-600 mb-1">
+              For Userpilot Colleagues
+            </p>
+            <p className="text-sm text-gray-500">
+              Created by Bilal 👋
             </p>
           </div>
 
@@ -84,7 +87,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
 
             <button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+              className="w-full bg-gradient-to-r from-[#6765E8] to-[#1CBC97] hover:from-[#5553C7] hover:to-[#19A77C] text-white font-semibold py-3 px-4 rounded-lg transition-all"
             >
               Access Guide
             </button>
