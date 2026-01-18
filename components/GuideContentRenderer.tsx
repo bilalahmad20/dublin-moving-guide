@@ -5,6 +5,19 @@ interface GuideContentRendererProps {
 }
 
 export default function GuideContentRenderer({ content }: GuideContentRendererProps) {
+  // Helper function to render text with bold formatting
+  const renderTextWithBold = (text: string) => {
+    // Split by ** for bold text
+    const parts = text.split('**');
+    return parts.map((part, i) => {
+      // Odd indices are bold (between **)
+      if (i % 2 === 1) {
+        return <strong key={i} className="font-bold text-gray-900">{part}</strong>;
+      }
+      return part;
+    });
+  };
+
   // Process the content to add proper styling
   const processContent = (rawContent: string) => {
     // Split by lines and process each section
@@ -15,65 +28,47 @@ export default function GuideContentRenderer({ content }: GuideContentRendererPr
 
       // Headers starting with #
       if (trimmed.startsWith('# ')) {
+        const headerText = trimmed.replace('# ', '');
         return (
           <h2 key={index} className="text-2xl font-bold text-gray-900 mt-6 mb-3">
-            {trimmed.replace('# ', '')}
+            {renderTextWithBold(headerText)}
           </h2>
         );
       }
 
       if (trimmed.startsWith('## ')) {
+        const headerText = trimmed.replace('## ', '');
         return (
           <h3 key={index} className="text-xl font-bold text-gray-900 mt-5 mb-2">
-            {trimmed.replace('## ', '')}
+            {renderTextWithBold(headerText)}
           </h3>
         );
       }
 
       if (trimmed.startsWith('### ')) {
+        const headerText = trimmed.replace('### ', '');
         return (
           <h4 key={index} className="text-lg font-semibold text-gray-900 mt-4 mb-2">
-            {trimmed.replace('### ', '')}
+            {renderTextWithBold(headerText)}
           </h4>
         );
       }
 
       // Bullet points
       if (trimmed.startsWith('- ')) {
+        const bulletText = trimmed.replace('- ', '');
         return (
           <li key={index} className="ml-6 mb-2 text-gray-700 leading-relaxed">
-            {trimmed.replace('- ', '')}
+            {renderTextWithBold(bulletText)}
           </li>
-        );
-      }
-
-      // Bold text
-      if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
-        return (
-          <p key={index} className="font-bold text-gray-900 mt-3 mb-2">
-            {trimmed.replace(/\*\*/g, '')}
-          </p>
         );
       }
 
       // Regular paragraph
       if (trimmed.length > 0) {
-        // Check if it contains bold text
-        const hasBold = trimmed.includes('**');
-        if (hasBold) {
-          const parts = trimmed.split('**');
-          return (
-            <p key={index} className="text-gray-700 leading-relaxed mb-3">
-              {parts.map((part, i) =>
-                i % 2 === 0 ? part : <strong key={i} className="font-bold text-gray-900">{part}</strong>
-              )}
-            </p>
-          );
-        }
-
         return (
           <p key={index} className="text-gray-700 leading-relaxed mb-3">
-            {trimmed}
+            {renderTextWithBold(trimmed)}
           </p>
         );
       }

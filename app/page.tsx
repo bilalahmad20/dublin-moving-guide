@@ -66,13 +66,13 @@ export default function Home() {
             <div className="inline-block bg-gradient-to-r from-[#6765E8] to-[#1CBC97] text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
               From your colleague Bilal 👋
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              🇮🇪 Hey! Welcome to My Dublin Moving Story
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+              🇮🇪 Your Complete Dublin Moving Guide
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
-              When I moved to Dublin on my work permit, I had to figure everything out the hard way.
-              I created this guide so you don't have to! This is literally every step I took, every deadline I tracked,
-              and every tip I learned along the way.
+              When I moved to Dublin, I had to figure everything out the hard way.
+              I created this step-by-step guide so you don't have to! Follow my exact journey with every deadline,
+              tip, and resource you need to settle in smoothly.
             </p>
           </div>
 
