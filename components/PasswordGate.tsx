@@ -73,7 +73,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6765E8] focus:border-[#6765E8] bg-white text-gray-900 placeholder-gray-400 font-medium"
                 placeholder="Enter password"
                 autoFocus
               />

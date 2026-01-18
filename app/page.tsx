@@ -1,9 +1,10 @@
 'use client';
 
 import { useChecklist } from '@/contexts/ChecklistContext';
-import { CheckCircle2, Circle, Calendar, Info, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { CheckCircle2, Circle, Calendar, Info, ChevronDown, ChevronUp, ExternalLink, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { getGuideSectionBySlug } from '@/data/guide-content';
+import GuideContentRenderer from '@/components/GuideContentRenderer';
 
 export default function Home() {
   const { tasks, toggleTask, userProgress, setArrivalDate } = useChecklist();
@@ -414,8 +415,8 @@ export default function Home() {
                 </button>
 
                 {expandedTasks[`guide-${group.category}`] && (
-                  <div className="mt-4 prose prose-sm max-w-none bg-white rounded-lg p-6 border border-gray-200">
-                    <div dangerouslySetInnerHTML={{ __html: guideSection.content.replace(/\n/g, '<br />') }} />
+                  <div className="mt-4 bg-white rounded-lg p-6 border border-gray-200">
+                    <GuideContentRenderer content={guideSection.content} />
 
                     {/* FAQs */}
                     {guideSection.faqs && guideSection.faqs.length > 0 && (
@@ -474,13 +475,38 @@ export default function Home() {
         </div>
       )}
 
+      {/* Need Help Section */}
+      <div className="bg-gradient-to-r from-[#6765E8] to-[#1CBC97] rounded-xl shadow-lg p-6 text-white">
+        <div className="flex items-start">
+          <MessageCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+          <div className="flex-1">
+            <h3 className="text-xl font-bold mb-2">Stuck? Need Help?</h3>
+            <p className="mb-3 opacity-90">
+              I went through all of this myself! If you have any questions, get confused, or just want to
+              double-check something, reach out to me directly.
+            </p>
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+              <p className="font-semibold mb-2">📧 Contact Bilal:</p>
+              <ul className="space-y-1 text-sm">
+                <li>💬 <strong>Slack:</strong> @bilal</li>
+                <li>📧 <strong>Email:</strong> bilal@userpilot.com</li>
+              </ul>
+            </div>
+            <p className="text-sm mt-3 italic opacity-80">
+              Seriously, don't hesitate! I'm happy to help and answer any questions. Moving to Dublin can be confusing,
+              and I want your transition to be smooth.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Footer Note */}
       <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 text-center">
         <p className="text-sm text-gray-600">
           💚 Created with care by <span className="font-semibold text-[#6765E8]">Bilal</span> for Userpilot colleagues
         </p>
         <p className="text-xs text-gray-500 mt-2">
-          Any questions? Ask me on Slack! I'm here to help.
+          Last updated: January 2026
         </p>
       </div>
     </div>
